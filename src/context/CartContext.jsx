@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
 
     // Agregar al carrito
     const addItem = (item) => {
-        if(isInCart(item)) {
+        if(isInCart(item.id)) {
             alert('El producto ya se encuentra en el carrito');
             return;
         }
