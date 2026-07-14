@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 import { ItemList } from '../ItemList/ItemList';
+import { useParams } from 'react-router-dom';
+import { getProducts } from '../../services/productsService';
 
 export const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { categoryId } = useParams();
 
     useEffect(() => {
-        fetch("/data/products.json")
-            .then((res) => res.json())
+        setLoading(true);
+
+        getProducts()
             .then((data) => setProducts(data))
-            .catch(error => console.log(error))
+            .catch(err => console.log("Hubo un error", err))
             .finally(() => setLoading(false));
     }, []);
 
